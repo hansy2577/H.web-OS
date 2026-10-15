@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="title">H.T editor | untitled</title>
+<link rel="manifest" href="manifest.json" />
+<link rel="shortcut icon" type="image/x-icon" href="icon.png">
+</head>
+<body id="body">
+    
+<div style="background-color: #0206024d; height: 30px; border: 3px solid black">
+    <button style="border-radius:6px; background: linear-gradient(90deg, #bcbcbc, white); height: 30px; border: 1px solid black;" onclick="saveFile()">save</button>
+    <input type="file" name="" id="import" style="visibility: hidden; position: absolute;" value="" />
+    <label for="import" style="border-radius:6px; padding: 5.4px; font-size: 14px; background: linear-gradient(-90deg, #bcbcbc, white); height: 30px; border: 1px solid black;" onclick="import()">import</label>
+    
+    <input type="text" id="fileName" value="untitled.txt" />
+</div>
+<textarea id="textZone" style="
+border-radius:4px; 
+background-image: url('BG.png'); 
+background-size: 20px;
+background-color: #ffffffbf; 
+border: 3px solid black;
+">hello word !</textarea>
+
+<div style="background-color: #0206024d; height: 27px; border: 3px solid black">
+    <a style="color: white; font-size: 13px;">font :</a>
+  
+    <input type="text" name="" id="font" value="Brush Script MT,cursive" />
+    <a style="color: white; font-size: 13px;">BG color :</a>
+  
+    <input type="text" name="" id="BGcolor" value="white" />
+    <a style="color: white; font-size: 13px;">text size :</a>
+    
+    <input type="number" style="width: 30px;" name="" id="fontSize" value="17" />
+</div>
+
+
+
+<style>
+    body {
+        background: linear-gradient(120deg, #73330e, #6c300d);
+    }
+    
+    input {
+        padding: 4px;
+        border-radius: 4px;
+    }
+</style>
+<script>
+    let fileGlobalName = "new h-file.txt";
+
+    re()
+    window.onresize = function() {
+        re()
+    }
+    
+    function re() {
+        document.getElementById('textZone').style.width = (window.innerWidth - 24) + "px";
+        document.getElementById('textZone').style.height = (window.innerHeight - 100) + "px";
+    }
+    
+    document.getElementById("import").addEventListener('change', function(event) {
+        const file = event.target.files[0];
+            
+        const reader = new FileReader();
+                
+        reader.onload = function(e) {
+            alert(e.target.result.split(",")[1])
+            document.getElementById("textZone").innerText = atob(e.target.result.split(",")[1]);
+            document.getElementById("fileName").innerText = file.name;
+            // e.target.result;  
+        };
+        
+        reader.readAsDataURL(file);
+    });
+    
+    function saveFile(as = "text/plain") {
+        try {
+            const blob = new Blob([document.getElementById("textZone").value], { as });
+            const url = URL.createObjectURL(blob);
+
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = fileGlobalName;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+
+            URL.revokeObjectURL(url); // Cleanup memory
+        } catch (err) {
+            alert("Download failed | reason :", err);
+        }
+    }
+    
+  setInterval(() => {
+    if (document.getElementById("font").value !== document.getElementById("textZone").style.fontFamily) {
+      document.getElementById("textZone").style.fontFamily = document.getElementById("font").value;
+    }
+
+    if (document.getElementById("fontSize").value !== document.getElementById("textZone").style.fontSize) {
+      document.getElementById("textZone").style.fontSize = document.getElementById("fontSize").value+"px";
+    }
+
+    if (document.getElementById("BGcolor").value !== document.getElementById("textZone").style.backgroundColor) {
+      document.getElementById("textZone").style.backgroundColor = document.getElementById("BGcolor").value;
+    }
+    
+    if (document.getElementById("fileName").value !== fileGlobalName) {
+      fileGlobalName = document.getElementById("fileName").value;
+    }
+
+    if (document.getElementById("title").innerText !== fileGlobalName) {
+      document.getElementById("title").innerText = "H.T editor | "+fileGlobalName;
+    }
+  },100);
+
+</script>
+</body>
+</html>
