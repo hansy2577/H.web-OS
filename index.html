@@ -67,7 +67,6 @@ border: 3px solid black;
         const reader = new FileReader();
                 
         reader.onload = function(e) {
-            alert(e.target.result.split(",")[1])
             document.getElementById("textZone").innerText = atob(e.target.result.split(",")[1]);
             document.getElementById("fileName").innerText = file.name;
             // e.target.result;  
