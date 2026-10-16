@@ -3,6 +3,7 @@ let terminal = {
       credit: "hansy2577b"
 }
 
+
 function exeCommande(name) {
       sessionStorage.setItem("command","€"+name);
 }
@@ -37,6 +38,7 @@ function newLine() {
 }
 
 
+
 function echo_more(textere,color,link){
       document.body.appendChild(document.createElement("br"));
 
@@ -57,3 +59,22 @@ function changeSession(name) {
       localStorage.setItem("terminal session",name);
       clearCanvas();
 }
+
+function saveFile(filename = "myText",data = "hello words !",as = "text/plain") {
+  try {
+    const blob = new Blob([data], { as });
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    URL.revokeObjectURL(url); // Cleanup memory
+  } catch (err) {
+    alert("Download failed | reason :", err);
+  }
+}
+

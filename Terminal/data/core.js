@@ -35,6 +35,22 @@ function getCommand() {
   rawFile.send();
 }
 
+function allCom(){
+  var listN = fileFunction.split("\n");
+
+var list = "";
+      for (var i = 1; i < listN.length; i++) {
+        if (listN[i][0] == "[") {
+          var output = (listN[i].replace("[","")).replace("]","");
+          list+= "• '"+output+"'\n";
+        }
+        
+        if (i >= listN.length -1) {
+          return list;
+        }
+      }
+}
+
 
 function startLoop() {
   setInterval(function(){
