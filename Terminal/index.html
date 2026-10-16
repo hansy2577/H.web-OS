@@ -13,9 +13,8 @@
 <body>
    <hr>
    <iframe src="data/game.html" id="canvas" allowtransparency="false" frameborder="0" width="400" height="500" onscroll="false"></iframe><br>
+   <hr>
    <a style="color: white;">></a><input type="text" style="background-color: black; color: white; width: 200px; border: 0px solid black;" frameborder="0" id="input"><button onclick="ok()" style="border: 2px solid white; color: white; background-color: black;" >enter</button>
-
-
    
    <style> body { background-color: black; }</style>
    <script>
@@ -35,8 +34,8 @@
       re();
       
       function re(){
-         document.getElementById("canvas").style.height = (window.innerHeight - 100)+"px";
-         document.getElementById("canvas").style.width = (window.innerWidth - 50)+"px"
+         document.getElementById("canvas").style.height = (window.innerHeight - 70)+"px";
+         document.getElementById("canvas").style.width = (window.innerWidth - 30)+"px"
 
          document.getElementById("input").style.width = (window.innerWidth - 120)+"px"
       }
