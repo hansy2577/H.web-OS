@@ -4,24 +4,45 @@
 
 [session]
  changeSession(prompt("terminal file name"))
-
+ 
 [start]
- exeCommande("h.help"); 
+ exeCommande("h"); 
+ 
+[h]
+echo("Welcome to H-terminal OS  :]","white");
+
+[h.core]
+ echo("tern-H OS \n * version :"+terminal.version+"\n \n * application name :"+window.clientInformation.appName+"\n \n * application version :"+window.clientInformation.appVersion,"white");
 
 [h.help]
- echo("welcome to terni-H OS","white");
+echo("list of command :\n"+allCom(),"white");
+
+[h.core/readme.txt]
+echo("H-terminal OS is a little simple terminal for test things if your bore\n it written in JavaScript not in C or C++ etc..., it experimental for now so if you see bug tell me !","white");
+
+[h.setting.BG]
+echo("later...")
+
+[h.exit]
+window.close()
+
+[h.clear]
+ clearCanvas()
+
+[h.app]
+ echo("current app list :\n"+appList)
 
 [h.app.calc]
 calculator(prompt("value1"),prompt("type ?: 1 = +, 2 = -, 3 = ×, 4 = ÷"),prompt("value2"));
 
+[h.app.js]
+scriptsRun(prompt("your script"));
+
 [h.app.browser]
 makeBrowser(prompt("link"));
 
-[clear]
- clearCanvas()
- 
-[h.app]
- echo("current app list :\n"+appList)
+[h.app.browser.download]
+saveFile("myFile.txt",prompt("site where download","https://"))
 
-[h.core]
- echo("tern-H OS \n * version :"+terminal.version+"\n \n * application name :"+window.clientInformation.appName+"\n \n * application version :"+window.clientInformation.appVersion,"white");
+[h.app.count]
+repeatCount(prompt("your number"));
