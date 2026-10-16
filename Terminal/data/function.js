@@ -1,6 +1,7 @@
 let terminal = {
       version: 1.5,
-      credit: "hansy2577b"
+      credit: "hansy2577b",
+      defaultTextColor: "white"
 }
 
 
@@ -8,7 +9,7 @@ function exeCommande(name) {
       sessionStorage.setItem("command","€"+name);
 }
 
-function commandEcho(text,color = "grey") {
+function commandEcho(text,color = terminal.defaultTextColor) {
       var commandText = document.createElement("i");
       commandText.innerText = "> "+text.substr(1, 999);
       commandText.style.color = color;
