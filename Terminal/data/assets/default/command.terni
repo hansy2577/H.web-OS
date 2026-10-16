@@ -23,6 +23,9 @@ echo("H-terminal OS is a little simple terminal for test things if your bore\n i
 [h.setting.BG]
 echo("later...")
 
+[h.setting.textColor]
+terminal.defaultTextColor = prompt("set color");
+
 [h.exit]
 window.close()
 
